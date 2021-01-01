@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<STWorkBench>
+	<defines>
+	<define key="PFC_ENABLED" value="TRUE" />
+	<define key="PFC_ENABLE" value="PFC_ENABLED" />
+	<define key="PFCNOMINALCURRENT" value="33264" />  				
+	<define key="FAULTPOLARITY" value="0" />    				
+	<define key="FAULTPORT" value="GPIOB" />        				
+	<define key="FAULTPIN" value="LL_GPIO_PIN_5" />          				
+	<define key="PWMFREQ" value="40000" />          				
+	<define key="CURRCTRLFREQUENCY" value="40000" /> 				
+	<define key="VOLTCTRLFREQUENCY" value="2000" /> 				
+	<define key="MAINSFREQ" value="500" /> 						
+	<define key="OUTPUTPOWERACTIVATION" value="100" />   		
+	<define key="OUTPUTPOWERDEACTIVATION" value="50" /> 		
+	<define key="SWOVERVOLTAGETH" value="375" />					
+	<define key="PROPDELAYON" value="144" /> 					
+	<define key="PROPDELAYOFF" value="236" /> 					
+	<define key="ISAMPLINGTIMEREAL" value="7.5" /> 				
+	<define key="VMAINS_PARTITIONING_FACTOR" value="206" />      
+	<define key="PFCSHUNTRESISTOR" value="0.030" /> 					
+	<define key="PFCAMPLGAIN" value="4.54" />
+	<define key="PID_CURR_KP_DEFAULT" value="1000" /> 			    
+	<define key="PID_CURR_KI_DEFAULT" value="600" />
+	<define key="PID_VOLT_KP_DEFAULT" value="5000" />
+	<define key="PID_VOLT_KI_DEFAULT" value="200" /> 
+	<define key="CURR_KPDIV" value="2048" /> 
+	<define key="CURR_KIDIV" value="2048" />	
+	<define key="VOLT_KPDIV" value="128" />	
+	<define key="VOLT_KIDIV" value="4096" />	
+	<define key="VOLTAGEREFERENCE" value="350" />	
+	<define key="STARTUPDURATION" value="300" />
+	</defines>
+</STWorkBench>

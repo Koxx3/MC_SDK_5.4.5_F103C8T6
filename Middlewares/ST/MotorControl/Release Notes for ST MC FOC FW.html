@@ -1,0 +1,587 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Release Notes for ST MC FOC FW</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+html,
+body,
+#write{
+	background: #ffffff;
+	font-family: arial, sans-serif;
+	font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	/*color: #3366ff;*/
+	font-family: arial, sans-serif;
+}
+
+html {
+	font-family: arial, sans-serif;
+	font-size:14px;
+}
+
+#write {
+	max-width: 914px;
+	/*text-align: justify;*/
+}
+
+#write>h1:first-child {
+	margin-top: 2.75rem;
+}
+#write>h2:first-child {
+	margin-top: 1.75rem;
+}
+#write>h3:first-child {
+	margin-top: 1rem;
+}
+#write>h4:first-child {
+	margin-top: 0.5rem;
+}
+h1 {
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 4rem;
+	margin: 0 0 1rem;
+	padding: 20px 30px;
+	text-align: center;
+	color: #03234B;
+}
+h2 {
+	font-size: 1rem;
+	font-weight: bold;
+	font-style: italic;
+	margin: 0 0 1rem;
+	padding-left: 0.2rem;
+	/*padding: 0 30px;*/
+	text-align: left;
+	margin-top: 3rem;
+	color: white;
+	background-color: #03234B;
+}
+h3 {
+	font-size: 1rem;
+	font-weight: bold;
+	text-align: left;
+	color: black;
+	/*background-color: blue;*/
+}
+
+h3 em {
+	color: white;
+	background-color: #03234B;
+	padding-left: 0.2rem;
+	padding-right: 5rem;
+	font-style: normal;
+}
+
+h4 {
+	font-size: 1rem;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: left;
+	color: black;
+}
+h5 {
+	font-size: 1rem;
+	font-weight: normal;
+	text-decoration: underline;
+	text-align: left;
+	color: black;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: normal;
+	text-align: center;
+}
+p {
+	color: black;
+	font-size: 1rem;
+	/*line-height: 1.75rem;*/
+	margin: 0 0 1rem;
+}
+
+li>p>em {
+	font-style: normal;
+	text-decoration: underline;
+}
+
+#write>h3.md-focus:before {
+	left: -1.875rem;
+	top: 0.5rem;
+	padding: 2px;
+}
+#write>h4.md-focus:before {
+	left: -1.875rem;
+	top: 0.3125rem;
+	padding: 2px;
+}
+#write>h5.md-focus:before {
+	left: -1.875rem;
+	top: 0.25rem;
+	padding: 2px;
+}
+#write>h6.md-focus:before {
+	left: -1.875rem;
+	top: .125rem;
+	padding: 2px;
+}
+
+ul {
+	list-style-type: square;
+}
+
+a,
+.md-def-url {
+	color: #3CB4E6;
+	text-decoration: none;
+}
+a:hover {
+	color: #3CB4E6;
+	text-decoration: underline;
+}
+table {
+	margin-bottom: 20px
+}
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.25rem;
+	vertical-align: top;
+	/*border-top: 1px solid #ddd*/
+	border: 1px solid #03234B
+}
+table thead 
+{
+	background-color: #03234B;
+	color: white
+}
+table th {
+	font-weight: bold
+}
+table thead th {
+	vertical-align: bottom
+}
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
+}
+table tbody+tbody {
+	border-top: 2px solid #ddd
+}
+
+table tbody tr:nth-child(odd) {
+	background: #03234B10;
+}
+
+code {
+	font-family: consolas, monospace;
+	/*padding: .5em;*/
+	color: #8C0078;
+	font-size: 0.9em;
+	/*margin-left: 0.2em;
+	margin-right: 0.2em;*/
+}
+.md-fences {
+	padding: .5em;
+	/*background: #f0f0f0;*/
+	border: 1px solid #ccc;
+	padding: .1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+	margin: 0 0 20px;
+	font-size: 1em;
+	padding: 0.3em 1em;
+  	padding-top: 0.4em;
+}
+.task-list{
+	padding-left: 0;
+}
+
+.task-list-item {
+	padding-left:2.125rem;
+}
+
+.task-list-item input {
+	top: 3px;
+
+}
+
+.task-list-item input:before {
+	content: "";
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid gray;
+	background-color: #fdfdfd;
+	margin-left: 0;
+	margin-top: -0.5rem;
+}
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before{
+	content: '\25FC';
+	/*◘*/
+	font-size: 0.8125rem;
+	line-height: 0.9375rem;
+	margin-top: -1rem;
+}
+
+/* Chrome 29+ */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution:.001dpcm) {
+    .task-list-item input:before {
+    	margin-top: -0.2rem;
+    }
+
+    .task-list-item input:checked:before,
+	.task-list-item input[checked]:before {
+		margin-top: -0.2rem;
+	}
+}
+
+blockquote {
+	margin: 0 0 1.11111rem;
+	padding: 0.5rem 1.11111rem 0 1.05556rem;
+	border-left: 1px solid gray;
+}
+blockquote,
+blockquote p {
+	line-height: 1.0;
+	color: #6f6f6f;
+}
+#write pre.md-meta-block {
+	min-height: 30px;
+	background: #f8f8f8;
+	padding: 1.5em;
+	font-weight: 300;
+	font-size: 1em;
+	padding-bottom: 1.5em;
+	padding-top: 3em;
+    margin-top: -1.5em;
+	color: #999;
+	border-left: 1000px #f8f8f8 solid;
+	margin-left: -1000px;
+	border-right: 1000px #f8f8f8 solid;
+	margin-right: -1000px;
+	margin-bottom: 2em;
+}
+.MathJax_Display {
+	font-size: 0.9em;
+	margin-top: 0.5em;
+	margin-bottom: 0;
+}
+p.mathjax-block,
+.mathjax-block {
+	padding-bottom: 0;
+}
+.mathjax-block>.code-tooltip {
+	bottom: 5px;
+	box-shadow: none;
+}
+.md-image>.md-meta {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+.md-image>img {
+	margin-top: 2px;
+}
+.md-image>.md-meta:first-of-type:before {
+	padding-left: 4px;
+}
+
+#typora-source {
+	color: #555;
+}
+
+/** ui for windows **/
+#md-searchpanel {
+    border-bottom: 1px solid #ccc;
+}
+
+#md-searchpanel .btn {
+    border: 1px solid #ccc;
+}
+
+#md-notification:before {
+	top: 14px;
+}
+
+#md-notification {
+	background: #eee;
+}
+
+.megamenu-menu-panel .btn {
+	border: 1px solid #ccc;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h1><a name="release-notes-for-st-mc-foc-fw" class="md-header-anchor"></a><span>Release Notes for ST MC FOC FW</span></h1><p><img src="../../../_htmresc/STlogo.png" referrerpolicy="no-referrer" alt="STlogo"></p><h6><a name="copyright-©-2020-stmicroelectronics" class="md-header-anchor"></a><span>Copyright © 2020 STMicroelectronics</span></h6><p><span>The STM32Cube is a STMicroelectronics original initiative to ease developers’ life by reducing development efforts, time and cost.</span></p><p><span>The STM32Cube covers STM32 portfolio.</span></p><p><span>The STM32 microcontroller offers the performance of the industry-standard Cortex®-M core running either Vector Control or either Field Oriented Control (FOC) modes, widely used in high-performance motor drive for Air Conditioning, Home Appliances, Drones, Building &amp; Industrial Automation, Medical and E-bike applications.</span></p><ul><li><p><span>The </span><strong><span>STM32 Motor Control (MC) Software Development Kit (SDK)</span></strong><span> includes:</span></p><ul><li><strong><span>ST MC FOC FW</span></strong><span> library;</span></li><li><strong><span>ST MC Six-Step FW</span></strong><span> library</span></li><li><strong><span>ST MC Workbench</span></strong><span> software tool.</span></li></ul><p><span>The ST MC FOC FW library implements the FOC mode for driving both Internal and Surface Mounted Permanent Magnets Synchronous Motor (PMSM). This implementation can drive one or two motors simultaneously with the characteristics and features listed below.</span></p><p><span>The ST MC Six-Step FW library implements the Six-Step mode for driving both Internal and Surface Mounted Permanent Magnets Synchronous Motor (PMSM). This implementation can drive one motor with the characteristics and features listed below.</span></p><p><span>Please, note that some of these features are not supported on all MCUs. In other words, the possible combinations of features and MCUs are discussed below.</span></p><p><span>Click </span><a href='#supported-devices-and-boards'><span>here</span></a><span> to check the supported STM32 microcontrollers and </span><a href='#known-limitations'><span>there</span></a><span> for the known limitations.</span></p><p><span>Please, visit us at </span><a href='http://www.st.com/'><span>http://www.st.com</span></a><span> to download latest available documents and any update.</span></p><p><span>The ST MC FOC FW library provides the following features:</span></p><h4><a name="motor-drive" class="md-header-anchor"></a><span>Motor Drive</span></h4><ul><li><p><span>Driving one or two different motors simultaneously (only one for Six-Step)</span></p><ul><li><span>In dual motors configuration, any combination of the below-mentioned speed feedback, current sampling, control mode, optional algorithm are allowed</span></li></ul></li><li><p><span>Speed or Torque Control Mode:</span></p><ul><li><span>Control Mode can be switched at any time when using FOC (even when the motor is spinning) or at compilation time for the Six-Step;</span></li><li><span>Control Mode is set independently for each motor.</span></li></ul></li><li><p><span>Programmable Speed or Torque ramps:</span></p><ul><li><span>Ramp duration (FOC only);</span></li><li><span>Final target speed or torque.</span></li></ul></li></ul><h4><a name="foc-loop" class="md-header-anchor"></a><span>FOC Loop</span></h4><ul><li><p><span>SVPWM generation:</span></p><ul><li><span>Configurable PWM frequency;</span></li><li><span>Centered or Edge PWM pattern type.</span></li></ul></li><li><p><span>Open or Closed Loop operation</span></p><ul><li><span>Closed loop is default;</span>
+<span>However, it is possible to remain in open loop when needed.</span></li></ul></li><li><p><span>Flux Weakening algorithm to reach higher than rated motor speed (optional)</span></p></li><li><p><span>Feed Forward high performance current regulation algorithm (optional)</span></p></li><li><p><span>Maximum Torque Per Ampere (I-PMSM only, optional)</span></p></li><li><p><span>Rev-Up control for sensor less configuration</span></p></li><li><p><span>On-The-Fly startup</span>
+<span>The sensor less algorithm is able to detect if the motor is already spinning before startup, thus skipping the acceleration phase if needed (useful for fan application)</span></p></li><li><p><span>Real time tuning of:</span></p><ul><li><span>PI/PID regulators;</span></li><li><span>Sensor less algorithms (Observers, Rev-up procedure);</span></li><li><span>Optional algorithms (Feed Forward, Flux Weakening, MTPA…);</span></li><li><span>Sensor less startup procedure.</span></li></ul></li></ul><h4><a name="six-step-loop" class="md-header-anchor"></a><span>Six-Step Loop</span></h4><ul><li><p><span>Duty Cycle generation:</span></p><ul><li><span>Configurable PWM frequency;</span></li><li><span>Centered or Edge PWM pattern type.</span></li></ul></li><li><p><span>Open or Closed Loop operation</span></p><ul><li><span>Closed loop is default;</span>
+<span>However, it is possible to remain in open loop when needed (decided at compilation time)</span></li></ul></li><li><p><span>Startup Control for sensor less configurations</span></p></li><li><p><span>Real time tuning of PID parameters</span></p></li><li><p><span>Back-EMF detection during PWM On time capability</span></p></li></ul><h4><a name="current-sensing" class="md-header-anchor"></a><span>Current Sensing</span></h4><ul><li><span>Isolated Current Sensing (ICS, FOC only);</span></li><li><span>Single Shunt resistor current sensing - common DC-link shunt resistor (ST patented);</span></li><li><span>Three Shunt resistors current sensing - resistors placed on the bottom of the three inverter legs (FOC only);</span></li><li><span>In case of dual motors drive setup, current sensing methods can differ from one motor to the other. Then, optimization is possible to share ADCs usage between motors. </span></li></ul><h4><a name="foc-rotor-speed--position-sensing" class="md-header-anchor"></a><span>FOC Rotor Speed &amp; Position Sensing</span></h4><ul><li><span>Support for embedded Operational Amplifiers usage on STM32 microcontroller when exists;</span></li><li><span>Sensor less Back EMF State Observer coupled with a PLL for rotor speed and angle computation (estimation);</span></li><li><span>Sensor less B-EMF State Observer coupled with a CORDIC for rotor speed and angle computation (estimation);</span></li><li><span>60° or 120° displaced HALL sensors decoding (measurement);</span></li><li><span>Quadrature Encoder decoding (measurement);</span></li><li><span>Two of these above methods can be used simultaneously on any of the motors: Main and Auxiliary one.</span>
+<span>The Main is used in the control loop, while the other is Auxiliary. Swapping Main with Auxiliary motor are allowed during spinning.</span></li></ul><h4><a name="six-step-rotor-speed--position-sensing" class="md-header-anchor"></a><span>Six-Step Rotor Speed &amp; Position Sensing</span></h4><ul><li><span>Back-EMF measurement</span></li></ul><h4><a name="motor-brake-strategies-foc-only" class="md-header-anchor"></a><span>Motor Brake strategies (FOC only)</span></h4><ul><li><span>Dissipative DC link brake resistor handling;</span></li><li><span>Motor phases short-circuiting (with optional hardware over-current protection disabling);</span></li><li><span>Motor phases free-wheeling.</span></li></ul><h4><a name="usage-of-stm32f30x-embedded-analog-peripherals-foc-only" class="md-header-anchor"></a><span>Usage of STM32F30x embedded analog peripherals (FOC only)</span></h4><ul><li><p><span>Support for Programmable Gain Amplifiers (PGA) usage for current sensing:</span></p><ul><li><span>three-shunts and single shunt topologies;</span></li><li><span>internal or external gain;</span></li></ul></li><li><p><span>Support for comparators usage in Over-Current Protection (OCP) mode:</span></p><ul><li><span>three-shunts and single shunt topologies;</span></li><li><span>internal or external threshold;</span></li></ul></li><li><p><span>Support for comparators usage in Over-Voltage Protection (OVP) mode:</span></p><ul><li><span>motor phases short-circuiting mode and free-wheeling mode;</span></li><li><span>internal or external threshold.</span></li></ul></li></ul><h4><a name="usage-of-foc-specific-stm32f30x-hardware-accelerations-foc-only" class="md-header-anchor"></a><span>Usage of FOC specific STM32F30x hardware accelerations (FOC only)</span></h4><ul><li><span>ADC queue of context (ST patented architecture);</span></li><li><span>CCM (core coupled memory) RAM;</span></li><li><span>Advanced Timer structures for single shunt topology (ST patented). </span></li></ul><h4><a name="fault-management" class="md-header-anchor"></a><span>Fault Management</span></h4><ul><li><span>Over-Current;</span></li><li><span>Over-Voltage</span></li><li><span>Under-Voltage;</span></li><li><span>Over-Heating;</span></li><li><span>Speed feedback reliability error (FOC only);</span></li><li><span>FOC algorithm execution overrun.</span></li></ul></li></ul><h2><a name="supported-devices-and-boards" class="md-header-anchor"></a><span>Supported devices and boards</span></h2><ul><li><p><strong><span>Supported Devices</span></strong><span>:</span></p><ul><li><span>STM32F0xx Family:</span>
+<span>STM32F030RC / STM32F030R8 / STM32F031C6 / STM32F051R8 / STM32F051C8 / STM32F072VB / STM32F072RB</span></li><li><span>STSPIN32 Family:</span>
+<span>STSPIN32F0601 / STSPIN32F0602 / STSPIN32F0251 / STSPIN32F0252 / STSPIN32F0B</span></li><li><span>STM32F1xx Family:</span>
+<span>STM32F103 High, Medium and Low Densities</span></li><li><span>STM32F3xx Family:</span>
+<span>STM32F302VB / STM32F302VC / STM32F302R8 / STM32F303VB / STM32F303VC / STM32F303ZE / STM32F303VE / STM32F303RE</span></li><li><span>STM32F4xx Family: </span>
+<span>STM32F417IG / STM32F415ZG / STM32F407IG / STM32F446ZE / STM32F446RE / STM32F401RE</span></li><li><span>STM32F7xx Family:</span>
+<span>STM32F746ZG / STM32F769NI</span></li><li><span>STM32L4xx Family:</span>
+<span>STM32L452RE / STM32L476RG</span></li><li><span>STM32G0xx Family:</span>
+<span>STM32G081</span></li><li><span>STM32G4xx Family:</span>
+<span>STM32G431CB / STM32G431RB / STM32G474QE </span></li><li><span>STM32H7xx Family: partially supported with examples</span>
+<span>STM32H745ZI</span></li></ul></li><li><p><strong><span>Control Boards</span></strong></p><ul><li><p><em><span>STM32F0xxFamily:</span></em></p><ul><li><span>NUCLEO-F030R8</span></li><li><span>NUCLEO-F072RB</span></li><li><span>STM32072B-EVAL</span></li></ul></li><li><p><em><span>STM32F1xx Family</span></em><span> :</span></p><ul><li><span>NUCLEO-F103RB</span></li><li><span>STM3210E-Eval</span></li></ul></li><li><p><em><span>STM32F3xx Family:</span></em></p><ul><li><span>NUCLEO-F302R8</span></li><li><span>NUCLEO-F303RE/NUCLEO-F303RB</span></li><li><span>STM32303E-EVAL</span></li></ul></li><li><p><em><span>STM32F4xx Family:</span></em></p><ul><li><span>NUCLEO-F446RE</span></li><li><span>NUCLEO-F401RE</span></li><li><span>STM3240G-EVAL</span></li><li><span>STM3241G-EVAL</span></li><li><span>STM32446E-EVAL</span></li><li><span>STEVAL-IHM039V1</span></li></ul></li><li><p><em><span>STM32F7xx Family</span></em><span>:</span></p><ul><li><span>NUCLEO-F746ZG</span></li><li><span>STM32F769I-EVAL</span></li></ul></li><li><p><em><span>STM32L4xx Family:</span></em></p><ul><li><span>NUCLEO-L452RE</span></li><li><span>NUCLEO-L476RG</span></li><li><span>STM32L476G-EVAL</span></li></ul></li><li><p><em><span>STM32G0xx Family:</span></em></p><ul><li><span>STM32G081B-EVAL</span></li></ul></li><li><p><em><span>STM32G4xx Family:</span></em></p><ul><li><span>NUCLEO-G431RB</span></li><li><span>STM32G474E-EVAL</span></li></ul></li><li><p><em><span>STM32H7xx Family:</span></em></p><ul><li><span>NUCLEO-H745ZI-Q</span></li></ul></li></ul></li><li><p><strong><span>Power Boards:</span></strong></p><ul><li><span>STEVAL-IHM023V3</span></li><li><span>STEVAL-IHM025V1</span></li><li><span>STEVAL-IHM028V2</span></li><li><span>STEVAL-IHM045V1</span></li><li><span>STEVAL-IPM05F</span></li><li><span>STEVAL-IPM07F</span></li><li><span>STEVAL-IPM08B</span></li><li><span>STEVAL-IPM10B</span></li><li><span>STEVAL-IPM10F</span></li><li><span>STEVAL-IPM15B</span></li><li><span>STEVAL-IPMNG3Q</span></li><li><span>STEVAL-IPMNG3S</span></li><li><span>STEVAL-IPMNG5Q</span></li><li><span>STEVAL-IPMNG8Q</span></li><li><span>STEVAL-IPMNM1N</span></li><li><span>STEVAL-IPMNM2N</span></li><li><span>STEVAL-IPMNM1S</span></li><li><span>STEVAL-CTM009V1</span></li><li><span>X-NUCLEO-IHM07M1</span></li><li><span>X-NUCLEO-IHM08M1</span></li><li><span>X-NUCLEO-IHM11M1</span></li><li><span>X-NUCLEO-IHM16M1</span></li></ul></li><li><p><strong><span>Inverter Boards</span></strong></p><ul><li><span>STEVAL-IHM034V2 (STM32F1)</span></li><li><span>STEVAL-IHM042V1</span></li><li><span>STEVAL-SPIN3201</span></li><li><span>STEVAL-SPIN3202</span></li><li><span>X-NUCLEO-IHM16 + NUCLEO-F303RE bundle</span></li><li><span>STEVAL-ESC001V1</span></li><li><span>B-G431B-ESC1</span></li><li><span>STSPIN32F0601S1</span></li><li><span>EVSPIN32F0601S3 </span></li><li><span>EVSPIN32F0251S1 </span></li><li><span>EVSPIN32F0602S1 </span></li><li><span>STEVAL-HKI001V2 </span></li><li><span>STEVAL-CTM010V1</span></li></ul></li></ul><h2><a name="known-limitations" class="md-header-anchor"></a><span>Known Limitations</span></h2><ul><li><p><span>LCD screen on EVAL boards are not supported;</span></p></li><li><p><span>Ac6 System Workbench for STM32 (SW4STM32) toolchain is not supported.</span></p></li><li><p><span>IP initialization with LL libraries is not supported for the STM32F1 family</span></p></li><li><p><span>With </span><strong><span>STM32CubeMx 5.0.0</span></strong><span>: </span></p><ul><li><span>Motor Control Projects configurations using an STM32L4 device do not work if generated using the LL drivers. Using the HAL ones is OK.</span></li><li><span>Motor Control Projects configurations using an STM32L4 device fail to generate if ADC discontinuous mode is set while scan mode is disabled. This is typically the case for projects using ICS as the current sensing technology.</span></li></ul></li><li><p><span>With </span><strong><span>STM32CubeMx 5.0.1</span></strong><span>:</span></p><ul><li><span>Motor Control Projects configurations using an STM32L4 with ICS as current sensing topology do not work.</span></li></ul></li><li><p><span>With </span><strong><span>STM32CubeMx 5.2.0</span></strong><span>:</span></p><ul><li><span>Configurations based on </span><strong><span>STM32G4xxx</span></strong><span> using a </span><strong><span>Single-Shunt</span></strong><span> current sensing topology and initializing the peripherals with the </span><strong><span>LL drivers</span></strong><span> cannot be generated.</span></li><li><span>Generating  </span><strong><span>ADC</span></strong><span> initialization with the </span><strong><span>LL drivers</span></strong><span> on </span><strong><span>STM32G4xxx</span></strong><span> or </span><strong><span>STM32L4xxx</span></strong><span> based configurations results in a non working code.</span></li><li><span>Generating </span><strong><span>TIM</span></strong><span>ers initializations with the </span><strong><span>LL drivers</span></strong><span> on </span><strong><span>STM32G4xxx</span></strong><span> based configurations results in a non working code.</span></li></ul></li><li><p><a name="cubemx5_5_5_6_adc_injected_issue"></a><span>With </span><strong><span>STM32CubeMx</span></strong><span> versions </span><strong><span>5.5.0</span></strong><span>, </span><strong><span>5.6.0</span></strong><span> and </span><strong><span>5.6.1</span></strong><span>: </span></p><ul><li><span>Generating </span><strong><span>ADC</span></strong><span> initialization with the </span><strong><span>LL drivers</span></strong><span> on </span><strong><span>STM32F4xx</span></strong><span> and </span><strong><span>STM32F7xx</span></strong><span> based configurations results in a non working code. Indeed, for these series, ADC injected channels configuration code generation is broken with the LL drivers.</span></li></ul></li><li><p><span>The example provided for the </span><a href='https://www.st.com/en/evaluation-tools/nucleo-h745zi-q.html'><span>NUCLEO-H745ZI</span></a><span> control board now requires ST32CubeMx version 5.6.0 or later to be generated properly.</span></p></li></ul><h2><a name="update-history" class="md-header-anchor"></a><span>Update History</span></h2><h3><a name="v545--18-dec-2020" class="md-header-anchor"></a><em><span>V5.4.5 / 18-Dec-2020</span></em></h3><h4><a name="main-changes" class="md-header-anchor"></a><span>Main Changes</span></h4><p><span>Version 5.4.4 is mainly a bug fix release of X-Cube-MCSDK v5.4.4. It also introduces a few new features.</span></p><ul><li><p><strong><span>End of support of IAR EWARM 7.x for the Web release variant</span></strong><span>. Binary libraries delivered with the Web variant of MCSDK, for the IAR EWARM toolchain, were built with IAR EWARM version 7.80 in previous releases. Starting with MCSDK 5.4.5, they are built with IAR EWARM version 8.20.  MCSDK 5.4.5 still provides binary libraries built with IAR EWAM 7.80, though. See section... for more details. Note that future MCSDK releases will </span><strong><span>not</span></strong><span> provide libraries for IAR EWARM 7 anymore.</span></p></li><li><p><span>Added support for the following power boards:</span></p><ul><li><span>STEVAL-IPMM10B</span></li><li><span>STEVAL-IPMM15B</span></li><li><span>STEVAL-IPM20B</span></li><li><span>STEVAL-IPM30B</span></li><li><span>STEVAL-IPMnM3Q</span></li><li><span>STEVAL-IPMnM5Q</span></li></ul></li><li><p><span>Added support for </span><strong><span>STM32G4 Cut 2.2</span></strong><span>: the firmware and some of the G4 examples in delivery 5.4.4 would not work when used with STM32G4 Cut 2.2. They have been updated to support this cut of the STM32G4 devices.</span></p></li><li><p><span>Fixed an issue with the overcurrent error due to the overflow or underflow of CCR registers of the PWM Timer not being checked.</span></p></li><li><p><span>Fixed an issue with ICL activation/deactivation</span></p></li><li><p><span>Fixed an issue with regular ADC conversions on STM32G4 when the sampling time is high.</span></p></li><li><p><span>Fixed an issue with the G4 CCMRAM example where some function were not placed in CCMRAM while they should have been.</span></p></li><li><p><span>Fixed an issue with On The Fly startup feature when the motor is already spinning beyond the closing loop threshold, in the direction opposite to the requested startup speed.</span></p></li></ul><h4><a name="iar-ewarm-7x-end-of-support" class="md-header-anchor"></a><span>IAR EWARM 7.x end of support</span></h4><p><span>This section is meaningful for the web variant of the MCSDK only. The Full variant of MCSDK is not impacted since it is not delivered with binary libraries.</span></p><p><span>Binary libraries built with version 7.x of IAR EWARM can be used to generate MCSDK projects that build with IAR EWARM 7.x and 8.x. However, when used in EWARM 8.x projects, warnings are generated due to different sizes of the </span><code>wchar_t</code><span> type between EWARM 7.x and 8.x. These warnings are a source of frequent problem reports though they do not have negative consequences. In addition, EWARM 8.x has been available for a few years now. So, it is time now to definitively switch to EWARM 8.x and drop support for EWARM 7.x. </span></p><p><span>Starting with the next release of MCSDK, Web variant binary libraries will be built with EWAM 8.x. This will make it impossible to build with EWARM 7.x and older. </span></p><p><span>For the present release, Web variant binary libraries are provided both for EWARM 7.x and EWARM 8.x. However, when generating a project for IAR EWARM, only EWARM 8.x libraries are pulled in the project even if EWARM 7.x was selected in the workbench. To use the EWARM 7.x libraries the following procedure can be used:</span></p><ol start='' ><li><span>Remove the EWARM 8.x library from the generated project. It is located in the </span><code>MCSDK_v5.4.5/MotorControl/lib</code><span> folder in the generated project and named </span><code>libmc-iar_M*.a</code><span>, with  </span><code>M*</code><span> the name of the Cortex M core used by the STM32 in the project. The folder contains all the libraries for all the cores and toolchains. Only one of them is actually used and its name is listed in the EWARM project.</span></li><li><span>Copy the EWARM 7.x library file needed for the project from the  </span><code>Middlewares/ST/MotorControl/lib</code><span> folder found in the MCSDK installation location. In this folder, EWARM v7.x libraries are named </span><code>libmc-iar7_M*.a</code><span>.</span></li><li><span>Rename the </span><code>libmc-iar7_M*.a</code><span> file into </span><code>libmc-iar_M*.a</code><span>.</span></li></ol><h4><a name="stm32cube-environment" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v6.1.1</span></li><li><span>STM32Cube_FW_F0_V1.11.2</span></li><li><span>STM32Cube_FW_F1_V1.8.3</span></li><li><span>STM32Cube_FW_F3_V1.11.2</span></li><li><span>STM32Cube_FW_F4_V1.25.2</span></li><li><span>STM32Cube_FW_F7_V1.16.0</span></li><li><span>STM32Cube_FW_G0_V1.4.0</span></li><li><span>STM32Cube_FW_G4_V1.3.0</span></li><li><span>STM32Cube_FW_L4_V1.16.0</span></li><li><span>STM32Cube_FW_H7_V1.8.0</span></li></ul><h4><a name="development-toolchains" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2</span></li><li><span>STM32CubeIDE v1.5.0</span></li><li><span>STM32CubeProgrammer 2.6.0</span></li></ul><h3><a name="v544--19-may-2020" class="md-header-anchor"></a><em><span>V5.4.4 / 19-May-2020</span></em></h3><h4><a name="main-changes-n472" class="md-header-anchor"></a><span>Main Changes</span></h4><p><span>Version 5.4.4 is mostly a bug fix release of X-Cube-MCSDK v5.4.3. It also introduces some new feature.</span></p><ul><li><strong><span>Added Support for PFC on STM32F3</span></strong><span>. This support is added as an example for the STEVAL-CTM010V1 Dual motor demo board. </span></li></ul><ul><li><strong><span>Atollic TrueSTUDIO &amp; SW4STM32 Deprecation</span></strong><span>. Atollic TrueSTUDIO and SW4STM32 IDEs are no longer actively developed and ST&#39;s strategy is to replace them with STM32CubeIDE. Recent STM32 series like STM32G4 devices for instance, are already not supported by all these IDEs. In a near future release of the Motor Control SDK, support for these IDE will be dropped and it will not be possible anymore to generate a project for them from the Workbench.</span></li><li><strong><span>Introduced a workaround for the issue with injected ADC conversions that exists on STM32G4xx Cut 2.2 devices</span></strong><span>. See the </span><a href='#injected-adc-conversions-issue-on-cut-22-of-stm32g4xx-devices'><span>dedicated section</span></a><span> below for more details.</span></li><li><span>Reintroduced the correct ST Motor Profiler version (the same as release 5.4.1 of the SDK). The Motor Profiler delivered with MCSDK 5.4.2 and 5.4.3 was incomplete.</span></li><li><span>Fixed an issue with the faulty setting of the maximum application current for the second drive in dual drive configurations</span></li><li><span>Fixed an issue with Position Control configurations using an absolute position encoder (with Z signal).</span></li><li><span>Fixed another issue with Position Control where a division by 0 was possible.</span></li><li><span>Fixed a bootstrap capacitor charge issue in ICS configurations </span></li><li><span>Fixed a SW Error that could occur during the offset measurement loop</span></li><li><span>Fixed a code generation issue resulting in a compilation error when enabling open loop.</span></li><li><span>Fixed a STM32H7 example compilation issue - missing files have been added.</span></li><li><span>Fixed a generation issue for some STM32G0 and STM32F0 devices where TIM2 does not exist but was referenced in the code anyway. This resulted in a compilation failure.</span></li><li><span>Fixed an issue with STM32F1 HD devices in single shunt configurations</span></li></ul><h4><a name="injected-adc-conversions-issue-on-cut-22-of-stm32g4xx-devices" class="md-header-anchor"></a><span>Injected ADC conversions issue on Cut 2.2 of STM32G4xx devices</span></h4><p><span>If injected conversions are interrupting a set of scan conversions (scan group) then the first conversion from this injected group is always zero and the other conversions of this injected group are correct. This issue is found on the Cut 2.2 of STM32G4xx devices.</span></p><p><span>The Motor Control SDK uses Injected ADC conversions to perform current measurements where they are available. This included the devices of the G4 series. </span></p><p><span>The workaround introduced in this release of the MCSDK consists in using regular conversions instead of injected ones for current measurement as it is already done for STM32F0 and STM32G0 devices that do not have the injected conversion feature. Other regular conversions are handled by the regular conversion manager component. </span></p><p>&nbsp;</p><h3><a name="v543--18-nov-2019" class="md-header-anchor"></a><em><span>V5.4.3 / 18-Nov-2019</span></em></h3><h4><a name="main-changes-n508" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed STSPIN based 6-Step examples that failed to build due to API changes in the HAL drivers.</span></li><li><span>Fixed issues with accessing Position Control specific Motor Control Protocol registers</span></li><li><span>Fixed complex examples for STM32G4 that missed the required activation of the CORDIC HW IP</span></li></ul><h4><a name="using-stm32cubeide-with-the-motor-control-sdk" class="md-header-anchor"></a><span>Using STM32CubeIDE with the Motor Control SDK</span></h4><p><span>It is now possible to generate Motor Control application projects for STM32CubeIDE. These projects come with two build configuration, </span><code>Release</code><span> and </span><code>Debug</code><span>. </span></p><p><span>The </span><code>Release</code><span> configuration builds the application with the highest level of optimization, geared towards speed (</span><code>-Ofast</code><span>) but does not provide any debug capability. This configuration is meant for production firmware.</span></p><p><span>The </span><code>Debug</code><span> configuration, on the contrary, will provide the highest level of debug capability (</span><code>-g3</code><span>) but no optimization (</span><code>-O0</code><span>). Unfortunately, this configuration may not work out of the box with Motor Control Application:</span></p><ul><li><span>The absence of any optimization may result in a binary that is too large to fit in the target MCU. When this occurs, the build fails at the link step;</span></li><li><span>Without any optimization, it is very likely that the application will emit a &quot;FOC duration&quot; fault immediately when the motor is started.</span></li></ul><p><span>To be able to debug the application, the </span><code>Debug</code><span>build configuration needs to be modified to add optimization. This can be done in the Project properties dialog, section C/C++ Build, selecting the </span><code>Debug</code><span> configuration and selecting </span><em><span>Optimize for Speed</span></em><span> for the MCU GCC Compiler / Optimization item.</span></p><p>&nbsp;</p><h3><a name="v542--04-nov-2019" class="md-header-anchor"></a><em><span>V5.4.2 / 04-Nov-2019</span></em></h3><h4><a name="main-changes-n528" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><p><span>Added support for the following features to configurations based on </span><a href='https://www.st.com/en/microcontrollers-microprocessors/stm32g4-series.html'><span>STM32G4xx</span></a><span> devices:</span></p><ul><li><span>The embedded </span><a href='https://www.st.com/resource/en/application_note/dm00614795.pdf'><span>CORDIC math coprocessor</span></a><span>;</span></li><li><span>Insulated Current Sensing;</span></li><li><span>Dual motors drive</span></li></ul></li><li><p><span>Introduction of the Position Control feature for configurations using a Quadrature Encoder as speed and position feedback. See the section </span><a href='#using-the-position-control-feature'><span>Using the Position Control feature</span></a><span> below for more details.</span></p></li><li><p><span>Projects can now be generated for the </span><a href='https://www.st.com/en/development-tools/stm32cubeide.html'><span>STM32CubeIDE</span></a><span> IDE.</span></p></li><li><p><span>Added the support for Torque Ramps in the motor control protocol.</span></p></li><li><p><span>Introduced the support of STGAP1S drives family.</span></p></li><li><p><span>Enhanced existing and added new Six-Step examples. See </span><a href='#six-step-examples'><span>Six-Step examples</span></a><span> section below</span></p><ul><li><span>Unified the UART speed used by the Six-Step Teraterm and the Motor Control Monitor interfaces to 115200 bps.</span></li></ul></li><li><p><span>Added support for the </span><a href='https://www.st.com/en/motor-drivers/stspin32f0b.html'><span>STSPIN32F0B</span></a><span> device.</span></p></li><li><p><span>Introduced partial support for </span><a href='https://www.st.com/en/microcontrollers-microprocessors/stm32h7-series.html'><span>STM32H7xx</span></a><span> devices. So far, only an example is provided with limited configurations capabilities.</span></p></li><li><p><span>The following issues have been fixed:</span></p><ul><li><span>Possible destruction of IGBTs on a Motor Stop with STM32G4xx based configurations</span></li><li><span>The </span><code>SPEED_UNIT</code><span> value cannot be changed in the State Observer + PLL speed and position feedback component with the  Web variant of the SDK.</span></li><li><span>ADC not enabled in Single Shunt configuration with STM32F3 devices when ADC clock is set to 18 MHz</span></li><li><span>Broken support of ARM compiler version 6 in Keil uVision IDE.</span></li></ul></li></ul><h4><a name="using-the-position-control-feature" class="md-header-anchor"></a><span>Using the Position Control feature</span></h4><p><span>The position control feature can be activated on any configuration that uses an Encoder for speed and position feedback. To activate it, open the Drive Settings dialog from the main configuration panel of the workbench, and select the Position Control item from the Control mode combo box. Dual drive configurations are also supported; the position control can then be activated on any motor equipped with an Encoder.</span></p><p><span>A set of new APIs is provided to exercise the feature. Among these, the most important ones are the following:</span></p><ul><li><code>void MC_ProgramPositionCommandMotor*(float fTargetPosition, float fDuration)</code><span> to set the mechanical angle the rotor is to reach and the duration of the movement to reach it</span></li><li><code>float MC_GetCurrentPosition1( void )</code><span> to retrieve the current rotor position</span></li><li><code>float MC_GetTargetPosition1( void )</code><span> to get the target rotor position </span></li><li><code>float MC_GetMoveDuration1( void )</code><span> to get the duration of the programmed movement.</span></li></ul><p><span>The </span><code>MC_ProgramPositionCommandMotor*</code><span> functions work as the other ramp functions of the API. For a complete description of this API, refer to the reference documentation of the Motor Control SDK.</span></p><p><span>Note that when the Position Control is activated on a motor, the speed and torque control mode cannot be used.</span></p><p><span>The Position Control feature uses floating point arithmetic. It may require a lot of CPU power on STM32F0 and STM32G0 devices that do not have an FPU.</span></p><h4><a name="six-step-examples" class="md-header-anchor"></a><span>Six-Step examples</span></h4><p><span>The following Six-Step examples have been added:</span></p><ul><li><strong><span>P-NUCLEO-IHM003</span></strong><span> kit</span></li><li><strong><span>NUCLEO-G431RB</span></strong><span> with an </span><strong><span>IHM07M1</span></strong><span> power stage and a </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor</span></li><li><strong><span>NUCLEO-G431RB</span></strong><span> with an </span><strong><span>IHM08M1</span></strong><span> power stage and a </span><strong><span>Shinano LA052-080E3NL1</span></strong><span> motor</span></li><li><strong><span>NUCLEO-G431RB</span></strong><span> with an </span><strong><span>IHM16M1</span></strong><span> power stage and a </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor</span></li><li><strong><span>NUCLEO-F401RE</span></strong><span> with an </span><strong><span>IHM07M1</span></strong><span> power stage and a </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor</span></li><li><strong><span>STEVAL-SPIN3204</span></strong><span> with a </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor.</span></li><li><strong><span>NUCLEO-F303RE</span></strong><span> with an </span><strong><span>X-NUCLEO-IHM16M1</span></strong><span> power stage and a </span><strong><span>Gimbal GBM2804H-100T</span></strong><span> motor.</span></li></ul><p><span>Other motors than those listed above can be supported provided that Six-Step parameters are adjusted.</span></p><h3><a name="v541--05-july-2019" class="md-header-anchor"></a><em><span>V5.4.1 / 05-July-2019</span></em></h3><h4><a name="main-changes-n601" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><p><span>Added support for Dual drive configurations on the </span><strong><span>STM32G4 family</span></strong><span>.</span></p></li><li><p><span>The following issues have been fixed:</span></p><ul><li><span>Incorrect polarization value of phase A for 3-Shunt configurations on STM32F0 and STM32G0 MCUs.</span></li><li><span>First ADC conversion for measuring the polarization of the current measurement was wrong on STM32F1/F3/F4/F7/G4/L4 series.</span></li><li><span>Overflow in speed control if the speed unit is set to </span><code>_001HZ</code></li><li><span>ICL was not working</span></li><li><span>Motor Profiler was not working on STM32F3 and L4 in one ADC configuration</span></li><li><span>handling of the </span><code>PWM_FREQUENCY_SCALING</code><span> parameter was incorrect in some cases </span></li><li><span>ESC Example failed to build</span></li><li><span>wrong motor power computation when stopping the motor.</span></li><li><span>The divisor of the derivative coefficient of PIDs could not be set because a prototype of the function that sets it was missing in the header file.</span></li><li><span>Code completion not working well with IAR EWARM 8.40</span></li><li><span>Fixed SW Error issue with TrueSTUDIO on CCMRAM enabled families</span></li></ul></li></ul><h3><a name="v540--27-may-2019" class="md-header-anchor"></a><em><span>V5.4.0 / 27-May-2019</span></em></h3><h4><a name="main-changes-n631" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><p><span>Added support for the </span><strong><span>STM32G4 family</span></strong><span>.</span></p></li><li><p><span>Added the capability for customers to change the </span><strong><span>speed unit</span></strong><span> used at API level. In addition to historic 01Hz, RPM and 001Hz are made available.</span></p></li><li><p><span>Added </span><strong><span>electric angle estimation compensation</span></strong><span> in the current regulation loop (for Park and inverse Park transforms).</span></p></li><li><p><span>Added examples to demonstrates </span><strong><span>Six-Step motor drive</span></strong><span>.</span></p></li><li><p><span>Added </span><strong><span>FreeRTOS</span></strong><span> support  for F1, F43, F4, F7, L4 and G4 families.</span></p></li><li><p><span>Turned most MC Library routines into </span><strong><code>__weak</code><span> functions</span></strong><span> which simplifies and secures even further the changing or replacement of parts of the code to fit users&#39; needs.</span></p></li><li><p><span>Changed the </span><code>Curr_Components</code><span> and </span><code>Volt_Components</code><span> types to improve code readability.</span></p></li><li><p><span>Improved the precision of the reconstruction of the motor speed for Hall sensor configurations.</span></p></li><li><p><span>Simplified the usage of the low level API: it is only needed to include </span><code>motorcontrol.h</code><span> to use it now.</span></p></li><li><p><span>Added examples to support the  ESC-F3 and ESC-G4 boards</span></p></li><li><p><span>Enhanced the </span><strong><span>Circle Limitation</span></strong><span> algorithm  so that $V_d$ is never 0 which prevents some uncontrollable situations.</span></p></li><li><p><span>Unidirectional Fast Com component support is reintroduced</span></p></li><li><p><span>Reworked the architecture of Three-Shunt and ICS PWM &amp; Current Feedback components to add flexibility to MCSDK. The Single-Shunt implementations will be reworked as well in a future release.</span></p></li><li><p><span>Support arbitrary Timer peripherals for the Virtual DAC feature.</span></p></li><li><p><span>The following issues have been fixed:</span></p><ul><li><span>1-Shunt configurations from running on STM32F7 devices do not work.</span></li><li><span>Impossibility to use the second DAC channel on STM32F7 devices.</span></li><li><span>Motor Control Registers cannot be read across the UART interface if their value is -1.</span></li><li><span>Wrong PWM duty cycles generation for 1-Shunt configuration on STM32G0 devices. The issue was mostly visible with low PWM frequencies or with a Repetition Counter strictly higher than 1.</span></li><li><span>Wrong computation of the power of the motor in case of negative speed for open loop configurations.</span></li><li><span>Wrong value computed for parameter C5 of the State Observer</span></li><li><span>Detection of motor stall situations in configurations using Hall sensors as speed and position feedback technique.</span></li><li><span>Typo in Break IRQ handler function with F4 3-Shunt configurations</span></li><li><span>Compilation warnings on non IAR toolchain due to IAR MISRA pragmas: these warning are removed</span></li><li><span>Reuse TIMx CH4 instead of TRGO as ADC trigger within F7 project</span></li><li><span>dual ICS F4 project does not work</span></li><li><span>ICS F7 project does not compile</span></li><li><span>Memory Fault in the RCM Handle Array when Memory Protection is enabled</span></li><li><span>State machine issue with Encoder configuration</span></li></ul></li></ul><h4><a name="speed-unit-at-api-level" class="md-header-anchor"></a><span>Speed Unit at API level</span></h4><p><span>Up to now, the speed unit used by API functions that expect or return a speed (like </span><code>MC_ProgramSpeedRampMotor1()</code><span> or </span><code>MC_GetMecSpeedAverageMotor1()</code><span> for instance) was the tenth of Hertz (01Hz). For commodity, it is now possible to use other units for these functions. With release 5.4.0, the two new speed units are made available: the RPM (Revolution Per Minute) and the 001HZ (Hundredth of Hertz).</span></p><p><span>The choice of the speed unit is made at compile time, by setting the </span><code>SPEED_UNIT</code><span> symbol to the proper value in file </span><code>mc_stm_types.h</code><span>: </span><code>_RPM</code><span> for RPM, </span><code>_001HZ</code><span> for Hundredth of Hertz and </span><code>_01HZ</code><span> for Tenth of Hertz. The </span><code>SPEED_UNIT</code><span> define is placed in a User Section so that users&#39; modification are resistant to project regeneration.</span></p><p><span>The default speed unit at API level remains the Tenth of Hertz for the time being. Refer to the reference documentation of the firmware to get a complete information on the functions that are impacted by this change.</span></p><p><strong><em><span>Note</span></em></strong><span>:  PID parameters computed by the Motor Control Workbench for speed regulation are suited for speed in 01Hz. The motor control subsystem internally scales them to adapt to the actual speed unit.</span></p><h4><a name="electrical-angle-estimation-compensation" class="md-header-anchor"></a><span>Electrical angle estimation compensation</span></h4><p><span>The current regulation loop of the motor control subsystem uses the rotor&#39;s electrical angle in its computation. It is needed for the Park transform that computes the $I_q$ and $I_d$ current components and then in the Inverse Park that computes the $V</span><em><span>\alpha$ and $V</span></em><span>\beta$ voltages that are passed to the SVPWM algorithm for phase voltage computation.  $I_q$ and $I_d$ are related to the current PWM period while $V</span><em><span>\alpha$ and $V</span></em><span>\beta$ are meant to be used in the next one. </span></p><p><span>However, the implementation provided in MCSDK uses the same electrical angle for both the Park and the inverse Park transforms. Though this is not much of a problem when the ratio between the PWM frequency and the electrical rotation speed is high, this may be a problem when this ratio gets lower. </span></p><p><span>In addition, when using sensor-less configurations, the electrical angle used in a given PWM period is computed on current and V~Bus~ measurements made during the previous one.</span></p><p><span>The Motor Control firmware now allows for using different angles for the Park and Inverse Park. This is controlled with two symbols defined in the </span><code>drive_parameters.h</code><span> file:</span></p><ul><li><code>PARK_ANGLE_COMPENSATION_FACTOR</code><span> is multiplied to the last measured instantaneous rotor speed (which is the angle variation between the last two PWM periods) and the result is added to the current angle before it is used for the Park transform.</span>
+<span>Its default value is </span><strong><span>0</span></strong><span>.</span></li><li><code>REV_PARK_ANGLE_COMPENSATION_FACTOR</code><span> is multiplied to the last measured instantaneous rotor speed (which is the angle variation between the last two PWM periods) and the result is added to the current angle right before it is used for the inverse Park transform for reference computation.</span>
+<span>Its default value is </span><strong><span>0</span></strong><span>.</span></li></ul><p><span>A similar set of two symbols, </span><code>PARK_ANGLE_COMPENSATION_FACTOR2</code><span> and </span><code>REV_PARK_ANGLE_COMPENSATION_FACTOR2</code><span> respectively, are defined for the second motor in dual drive configurations.</span></p><p><span>All these symbols are defined in User Sections so they can be changed without being reset if the project is regenerated.</span></p><h4><a name="6-step-examples" class="md-header-anchor"></a><span>6-Step Examples</span></h4><p><span>Note that the 6-Step drive implementation that is proposed in these examples is still experimental. Its integration within the Motor Control SDK is very preliminary and will change in future releases.</span></p><p><span>6 examples are provided on three different configurations:</span></p><ul><li><strong><span>P-NUCLEO-IHM003</span></strong><span> motor control kit.</span></li><li><strong><span>NUCLEO-G431RB</span></strong><span> control board + </span><strong><span>X-NUCLEO-IHM16M1</span></strong><span> power board + </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor.</span></li><li><strong><span>NUCLEO-G431RB</span></strong><span> control board + </span><strong><span>X-NUCLEO-IHM07M1</span></strong><span> power board + </span><strong><span>BullRunning BR2804-1700Kv-1</span></strong><span> motor.</span></li></ul><p><span>In its current state, the Motor Control Protocol is only partially supported by the 6-Step implementation. Alternatively, a console like, command line interface over the serial port is provided which allows for a finer control over the application.</span></p><p><span>For each of the three configurations above, two examples are delivered, one for the console interface and one with the Motor Control Protocol.</span></p><h5><a name="6-step-example-usage" class="md-header-anchor"></a><span>6-Step Example Usage</span></h5><p><span>In 6-Step configurations, the Motor Control Protocol currently suffers from the following limitations:</span></p><ul><li><span>the mechanical speed of the motor can be set  provided that it is positive, </span></li><li><span>the speed ramp mechanism is not implemented yet </span></li><li><span>the speed and application state are the only two internal variables that are monitored. Notably, the temperature, bus voltage and motor power are not measured. </span></li></ul><p><span>In addition the DAC feature is not supported yet. This status will change in future releases as the integration level of the 6-Step implementation increases. </span></p><p><span>Alternatively, the 6-Step implementation provides a command line interface over the serial port. This command line interface can be accessed with the TeraTerm terminal emulator for instance and allows for a finer control over the application.</span></p><p><span>The TeraTerm configuration to use is described in the </span><code>TERATERM_G431RB_230400_Pnone.ini</code><span> file delivered with the example. </span></p><p><span>At startup, the Application prints a banner followed by a list of possible commands as welcome message:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  *******************</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * 6 STEP LIB *</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  *******************</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * List of commands:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;GETSPD&gt; Get Motor Speed</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;GETSTA&gt; Get Motor Status</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;SELMOT&gt; Select Motor</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;SETDIR&gt; Set Motor Direction</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;SETSPD&gt; Set Motor Speed</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;STARTM&gt; Start Motor</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * &lt;STOPMT&gt; Stop Motor</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  * </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 280px;"></div><div class="CodeMirror-gutters" style="display: none; height: 280px;"></div></div></div></pre><p><span> Then the application waits for the user to type a command and press the enter key to execute it.</span>
+<span>Each command is 6 characters long. For commands that expect arguments, first type the name of the command, then press enter and then a prompt line invites the user to enter the value of the argument.</span></p><p><span>The list of all commands follows:</span></p><ul><li><code>GETSPD</code><span>: Returns the current mechanical speed of the current motor, in RPM.</span></li><li><code>GETSTA</code><span>: Returns the current status of the current motor. Posible status are: </span><code>IDLE</code><span>, </span><code>STOP</code><span>, </span><code>ALIGNMENT</code><span>, </span>
+<span>​    ​    </span><code>STARTUP</code><span>, </span><code>RUN</code><span>, </span><code>SPEEDFDBKERROR</code><span>, </span><code>OVERCURRENT</code><span>, </span><code>VALIDATION_FAIL</code><span>, </span><code>LF_TIMER_FAILURE</code><span>.</span></li><li><span>`SELMOT: Select the current motor. This command does nothing on single drive setups.</span></li><li><code>SETDIR</code><span>: Sets the direction of the motor. Accept on parameter that can be either </span><code>CW</code><span> (Clockwise) or </span>
+<span>​    ​    </span><code>CCW</code><span> (Counter Clockwise).</span></li><li><code>SETDCY</code><span>: Sets the PWM duty cycle. This command is used to control the motor when the speed loop is </span>
+<span>​    ​    not built in the application, which is the default case. This command expects one parameter:</span>
+<span>​    ​    the value of the duty cycle in tenth of percent (in thousandths). Accepted values range from </span>
+<span>​    ​    0 to 1000.</span></li><li><code>SETSPD</code><span>: Sets the mechanical speed reference of the current motor. This command is active only if </span>
+<span>​    ​    the speed loop has been built in the application. This command expects one argument: the </span>
+<span>​    ​    speed in RPM.</span></li><li><code>STARTM</code><span>: Starts the current motor.</span></li><li><code>STOPMT</code><span>: Stops the current motor.</span></li></ul><h5><a name="6-step-example-configuration" class="md-header-anchor"></a><span>6-Step Example Configuration</span></h5><p><span> In its current state the configuration possibilities of the application are limited.</span></p><p><span>There are two ways to configure the example. </span></p><ol start='' ><li><p><span>First, by using STM32CubeMx, to choose which 6-Step features to use: In the Pinout and </span>
+<span>Configuration view, peripheral pane, click on &quot;A-Z&quot; to list all peripherals and middlewares</span>
+<span>in alphabetical order. Browse down to MotorControl and click on it. This opens a pane in the</span>
+<span>middle, showing some configuration options. </span></p><ul><li><code>SIX_STEP_CONTROL_MODE</code><span> allows for choosing between Current and Voltage modes. </span></li><li><code>SIX_STEP_SPEED_LOOP</code><span>: if checked, a speed regulation loop is built in the application and mechanical speed reference can be set. If it is unchecked the speed is not regulated and the only way to control the motor is by setting the PWM duty cycle applied to the active phase(s). Such a control cannot be achieved with the Motor Control Monitor at the moment.</span></li><li><code>SIX_STEP_SET_POINT_RAMPING</code><span>: if checked, builds the Set Point Ramping feature in the application.</span></li><li><code>SIX_STEP_THREE_PWM</code><span>: this must be checked for power boards where the MCU drives enable signals</span><br/><span>instead of the complementary PWM channels, as it is the case for the </span><strong><span>X-NUCLEO-IHM07M1</span></strong><span> or </span><strong><span>X-NUCLEO-IHM16M1</span></strong><span> power boards and more generally with gate drivers like ST&#39;s L6230 or STSPIN830.</span></li></ul></li><li><p><span>Other parameters, like motor parameters or PID factors for instance can be changed in the </span><strong><span>USER CODE</span></strong><span> </span>
+<span>sections of the </span><code>6step_conf_*.h</code><span> files.</span></p></li></ol><h4><a name="working-with-stm32cubeide-for-motor-control-projects" class="md-header-anchor"></a><span>Working with STM32CubeIDE for Motor Control projects</span></h4><p><span>Motor Control projects generated with STM32 Motor Control Workbench fail to build. Before a solution can be developed for this issue, a work around exists that allows to use ST&#39;s new IDE with Motor Control projects by following the procedure described in this section and by respecting a few rules.</span></p><ol start='' ><li><span>In STM32 Motor Control Workbench, when generating or updating a project, choose either </span><code>ST SW4 STM32</code><span> or </span><code>ST TrueSTUDIO</code><span> as the Target Toolchain. </span>
+<strong><span>Note</span></strong><span>: STM32G4 based projects cannot be generated with </span><code>TrueSTUDIO</code><span>.</span></li><li><span>Open </span><code>STM32CubeIDE</code><span>, go to the File menu and select the &quot;Open Projects from File System...&quot; item.</span></li><li><span>In the dialog that opens, click the &quot;Directory...&quot; button on the &quot;Import source&quot; line. Navigate to the directory that contains the generated project and select it.</span></li><li><span>The Dialog should now propose two projects for import. Select only the one that has the &quot;Convert &#39;TrueSTUDIO...&quot; or &quot;Convert &#39;System Workbench...&#39;&quot; mention in the &quot;Import as column&quot;. The other one must not be selected.</span></li><li><span>the imported project should build and run as expected.</span></li></ol><p><span>It is important to follow a few rules when working with such imported projects:</span></p><ul><li><span>Do not edit the project&#39;s IOC file from the STM32CubeMx perspective embedded in STM32CubeIDE. A standalone version of STM32CubeMx should be used instead.</span></li><li><span>Do not generate the sources of the project from the STM32CubeMx perspective embedded in STM32CubeIDE. A standalone version of STM32CubeMx should be used instead.</span></li><li><span>Each time the project is (re)generated (wether from CubeMx or from MC Workbench), it needs to be imported again in STM32CubeIDE.</span></li></ul><h4><a name="stm32cube-environment-n792" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v5.2.0</span></li><li><span>STM32Cube_FW_F0_V1.10.0</span></li><li><span>STM32Cube_FW_F1_V1.7.0</span></li><li><span>STM32Cube_FW_F3_V1.10.0</span></li><li><span>STM32Cube_FW_F4_V1.24.1</span></li><li><span>STM32Cube_FW_F7_V1.15.0</span></li><li><span>STM32Cube_FW_G0_V1.2.0</span></li><li><span>STM32Cube_FW_G4_V1.0.0</span></li><li><span>STM32Cube_FW_L4_V1.14.0</span></li></ul><h4><a name="development-toolchains-n812" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.2.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><p>&nbsp;</p><h3><a name="v533--18-jan-2019" class="md-header-anchor"></a><em><span>V5.3.3 / 18-Jan-2019</span></em></h3><h4><a name="main-changes-n824" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed an issue with VBus and Temperature acquisition when performed with another ADC than the current sensing one.</span></li><li><span>Fixed an issue with the configuration of the current sampling ADC on STM32F401 when building with the HAL Drivers instead of the LL ones.</span></li><li><span>Added support for  the STM32G0 family with Atollic TrueSTUDIO.</span></li><li><span>Added a FreeRTOS based example working on the P-NUCLEO-IHM001 motor control kit.</span></li></ul><h4><a name="stm32cube-environment-n834" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v5.0.1</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F1_V1.7.0</span></li><li><span>STM32Cube_FW_F3_V1.10.0</span></li><li><span>STM32Cube_FW_F4_V1.22.0</span></li><li><span>STM32Cube_FW_F7_V1.13.0</span></li><li><span>STM32Cube_FW_G0_V1.0.0</span></li><li><span>STM32Cube_FW_L4_V1.13.0</span></li></ul><h4><a name="development-toolchains-n852" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.2.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h3><a name="v532--21-dec-2018" class="md-header-anchor"></a><em><span>V5.3.2 / 21-Dec-2018</span></em></h3><h4><a name="main-changes-n863" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed an issue with negative speed in Open Loop mode.</span></li><li><span>Fixed an issue that prevented dual drive 1 shunt configurations to build on IHM042V1</span></li><li><span>Fixed an issue with the Potentiometer example that could not build with TrueSTUDIO.</span></li></ul><h4><a name="stm32cube-environment-n871" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v5.0.0</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F1_V1.7.0</span></li><li><span>STM32Cube_FW_F3_V1.10.0</span></li><li><span>STM32Cube_FW_F4_V1.22.0</span></li><li><span>STM32Cube_FW_F7_V1.13.0</span></li><li><span>STM32Cube_FW_G0_V1.0.0</span></li><li><span>STM32Cube_FW_L4_V1.13.0</span></li></ul><h4><a name="development-toolchains-n889" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.1.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h3><a name="v531--10-dec-2018" class="md-header-anchor"></a><em><span>V5.3.1 / 10-Dec-2018</span></em></h3><h4><a name="main-changes-n900" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Added support for the STM32G0 family (See </span><a href='#supported-devices-and-boards'><span>Supported devices and boards</span></a><span> above). Note that this support does not include Atollic TrueSTUDIO yet.</span></li><li><span>Support of two different ADCs for the VBus and Temperature measurements.</span></li><li><span>Added an Example using FreeRTOS with a Motor Control Application</span></li><li><span>Added an example with a Gimbal motor and the IHM16M1 power board.</span></li><li><span>Fixed an issue in F4, 3-Shunt, 1 ADC current sensing that resulted in either an Over Current or a Speed Feedback error. </span></li><li><span>Fixed an issue that prevented dual drive configurations to work in the case where the motors had different PWM frequencies.</span></li><li><span>Fixed an issue that prevented single shunt configurations driving the low side transistors on STM32F446  to work.</span></li><li><span>Fixed FOC and SW Error issues that happened on STSPIN32F0/STM32F0 when the PWM Frequency was set above 18KHz.</span></li><li><span>Fixed the CCMRAM examples for TrueSTUDIO. </span></li></ul><h4><a name="stm32cube-environment-n920" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v5.0.0</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F1_V1.7.0</span></li><li><span>STM32Cube_FW_F3_V1.10.0</span></li><li><span>STM32Cube_FW_F4_V1.22.0</span></li><li><span>STM32Cube_FW_F7_V1.13.0</span></li><li><span>STM32Cube_FW_G0_V1.0.0</span></li><li><span>STM32Cube_FW_L4_V1.13.0</span></li></ul><h4><a name="development-toolchains-n938" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.1.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h3><a name="v520--03-aug-2018" class="md-header-anchor"></a><em><span>V5.2.0 / 03-Aug-2018</span></em></h3><h4><a name="main-changes-n949" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Added support for the STM32F7 family (See </span><a href='#supported-devices-and-boards'><span>Supported devices and boards</span></a><span> above)</span></li><li><span>Added support for the STM32L4 family (See </span><a href='#supported-devices-and-boards'><span>Supported devices and boards</span></a><span> above)</span></li><li><span>Added support for the STM32F401 device and the NUCLEO-F401RE board</span></li><li><span>Introduction of the Regular Conversion Manager to manage application&#39;s and motor control subsystem&#39;s ADC regular conversions </span></li><li><span>Added CCMRAM support for Atollic TrueSTUDIO toolchain in related examples</span></li><li><span>Added a HardFault Handling routine that stops PWM generation to all STM32 Families (already implemented for F3).</span></li><li><span>Fixed an issue in the firmware that would lead to defining handle variables multiple times in 3 Shunt, shared resourced configurations.</span></li></ul><h4><a name="regular-conversion-manager" class="md-header-anchor"></a><span>Regular Conversion Manager</span></h4><p><span>The Regular Conversion Manager (RCM) is a new component that primarily aims at handling ADC regular conversions needed by the Motor Control subsystem. These are typically needed for Bus Voltage sensing and Temperature reading. </span></p><p><span>This component ensures that Motor Control subsystem&#39;s regular conversions are performed well whether these conversions are done on an ADC that is already used for Current Sensing or not and even if the target ADC does not support injected channels. This service is needed to prepare for the support of future inverter boards. </span></p><p><span>The RCM component is instantiated only once in the system.</span></p><p><span>Customers application are welcome to use this service. Refer to the Reference documentation for more information.</span></p><h4><a name="stm32cube-environment-n970" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v4.25.1 / STM32CubeMX  v4.26.1</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F1_V1.6.1</span></li><li><span>STM32Cube_FW_F3_V1.10.0</span></li><li><span>STM32Cube_FW_F4_V1.21.0</span></li><li><span>STM32Cube_FW_F7_V1.11.0 / STM32Cube_FW_F7_V1.12.0</span></li><li><span>STM32Cube_FW_L4_V1.11.0</span></li></ul><h4><a name="development-toolchains-n986" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.25</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.0.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h3><a name="v513--10-jul-2018" class="md-header-anchor"></a><em><span>V5.1.3 / 10-Jul-2018</span></em></h3><p><span>Version 5.1.3 is a bug fix release of X-Cube-MCSDK v5.1.</span></p><h4><a name="main-changes-n998" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed an issue that prevented the SysTick counter from incrementing. Because of this issue, HAL_Delay() was blocking forever.</span></li></ul><h3><a name="v512--06-jul-2018" class="md-header-anchor"></a><em><span>V5.1.2 / 06-Jul 2018</span></em></h3><p><span>Version 5.1.2 is a bug fix release of X-Cube-MCSDK v5.1.</span></p><h4><a name="main-changes-n1004" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Added support for STM32F1 based Nucleo board</span></li><li><span>Added support for the STM32F3 based ESC inverter board</span></li><li><span>Added support for Atollic IDE to all examples delivered with the SDK.</span></li><li><span>Fixed the name of the MC library in the CCMRAM + Atollic configuration. This issue prevented from building such configurations.</span></li><li><span>Fixed an issue with the configuration of the ADC in STM32F3, Shared resources with external OpAmps cases.</span></li><li><span>Fixed an issue where Id ref would not go back to 0 when exiting the flux weakening state.</span></li><li><span>Fixed an issue with the startup procedure that was sometimes having undefined behavior on failure.</span></li><li><span>Fixed return type of </span><code>MC_StopMotor*()</code><span> function. They now return a boolean value to indicate success or failure.</span></li></ul><h4><a name="development-toolchains-n1022" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.25</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.0.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h3><a name="v511--07-jun-2018" class="md-header-anchor"></a><em><span>V5.1.1 / 07-Jun-2018</span></em></h3><p><span>Version 5.1.1 is a bug fix release of X-Cube-MCSDK v5.1.</span></p><h4><a name="main-changes-n1034" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed an issue that prevented STM32CubeMx version 4.26 from generating ST Motor Control SDK projects. STM32CubeMx versions 4.25.x still work with the SDK.</span></li><li><span>Updated X-Cube-MCSDK-FUL release of the SDK with missing examples.</span></li></ul><h4><a name="development-toolchains-n1040" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.25</span></li><li><span>Atollic TrueSTUDIO for STM32 version 9.0.0</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h4><a name="stm32cube-environment-n1050" class="md-header-anchor"></a><span>STM32Cube Environment</span></h4><ul><li><span>STM32CubeMX  v4.25.1 / STM32CubeMx v4.26.0.</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F1_V1.6.1</span></li><li><span>STM32Cube_FW_F3_V1.9.0 / STM32Cube_FW_F3_V1.9.1</span></li><li><span>STM32Cube_FW_F4_V1.19.0</span></li></ul><h3><a name="v510--05-jun-2018" class="md-header-anchor"></a><em><span>V5.1.0 / 05-Jun-2018</span></em><span> </span></h3><h4><a name="main-changes-n1063" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><p><span>Added support for the STM32F1 family (See </span><a href='#supported-devices-and-boards'><span>Supported devices and boards</span></a><span> below);</span></p></li><li><p><span>Added support for STEVAL-SPIN devices (See </span><a href='#supported-devices-and-boards'><span>Supported devices and boards</span></a><span> below);</span></p></li><li><p><span>Introduction of the Power Factor Correction feature for STM32F103 High Density MCUs;</span></p></li><li><p><span>Added support for the Start/Stop motor button;</span></p></li><li><p><span>Added support for IP initialization with LL libraries (except for STM32F1 family)</span></p></li><li><p><span>Bug fixes, among which:</span></p><ul><li><span>Complementary Dead time is not set to 0 anymore in some STM32F4 configurations</span></li></ul></li></ul><h4><a name="power-factor-correction" class="md-header-anchor"></a><span>Power Factor Correction</span></h4><p><span>The Power Factor Correction (PFC) feature is provided as an example running on the STEVAL-IHM034V2 inverter board. Look in the folder where the SDK is installed, in the </span><code>Projects\STEVAL-IHM034V2\MotorControlWithPFCExample</code><span> folder.</span></p><p><span>The PFC feature has been validated with an electronic load.</span></p><h4><a name="development-toolchains-n1083" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.25</span></li><li><span>ST-LINK/V2 v4.2.0</span></li></ul><h4><a name="warnings" class="md-header-anchor"></a><span>Warnings</span></h4><ul><li><span>The start/stop motor button is not supported on STEVAL-SPIN boards;</span></li><li><span>STM32F0 based projects built with the MDK-ARM (Keil) tool chain may fail to spin the motor and show a FOC duration error. To prevent this, the PWM Frequency  parameter in Driver Management, Drive Settings, should be lowered (typically down to 10 KHz) in the ST MC Workbench.</span></li></ul><h4><a name="stm32cubemx-environment" class="md-header-anchor"></a><span>STM32CubeMX Environment</span></h4><ul><li><span>STM32CubeMX v4.25.1</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F3_V1.9.0 / STM32Cube_FW_F3_V1.9.1</span></li><li><span>STM32Cube_FW_F4_V1.19.0</span></li></ul><h3><a name="v503--17-apr-2018" class="md-header-anchor"></a><em><span>V5.0.3 / 17-Apr-2018</span></em></h3><h4><a name="main-changes-n1108" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Fixed Virtual Bus Voltage Sensor integration in ST Motor Control SDK.</span></li></ul><h4><a name="development-toolchains-n1112" class="md-header-anchor"></a><span>Development Toolchains</span></h4><ul><li><span>IAR Embedded Workbench for ARM (IAR Systems AB) v7.80.4 and v8.20.2.</span></li><li><span>μVision® IDE for Arm® (Keil® MDK) v5.24.2.0</span></li><li><span>ST-LINK/V2 v4.2.0.</span></li></ul><h4><a name="stm32cubemx-environment-n1120" class="md-header-anchor"></a><span>STM32CubeMX Environment</span></h4><ul><li><span>STM32CubeMX     v4.25.0</span></li><li><span>STM32Cube_FW_F0_V1.9.0</span></li><li><span>STM32Cube_FW_F3_V1.9.0</span></li><li><span>STM32Cube_FW_F4_V1.19.0</span></li></ul><h3><a name="v502--04-apr-2018" class="md-header-anchor"></a><em><span>V5.0.2 / 04-Apr-2018</span></em></h3><h4><a name="main-changes-n1131" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>Version 5.0.2, bug fix release of ST Motor Control Workbench v5.0</span></li><li><span>Suppoty for IAR EWARM versions 8.x.</span></li><li><span>Support for μVision® IDE for Arm® (Keil® MDK) v5.24.2.0</span></li><li><span>support for mixed 1-shunt/3-shunt dual drive setup with STM32 F3.</span></li></ul><h3><a name="v501--08-mar-2018" class="md-header-anchor"></a><em><span>V5.0.1 / 08-Mar-2018</span></em></h3><h4><a name="main-changes-n1142" class="md-header-anchor"></a><span>Main Changes</span></h4><ul><li><span>First release of the ST Motor Control Workbench v5.0.</span></li></ul><h2><a name="license" class="md-header-anchor"></a><span>License</span></h2><p><span>This software package is licensed by ST under ST license SLA0048, the &quot;License&quot;; You may not use this package except in compliance with the License. You may obtain a copy of the License at:</span></p><div style="text-align: center"><http: www.st.com="" sla0048=""></http:></div>
+<div style="text-align: center">For a complete documentation on STM32 Microcontrollers, please visit us at http://www.st.com/STM32</div></div>
+</body>
+</html>
