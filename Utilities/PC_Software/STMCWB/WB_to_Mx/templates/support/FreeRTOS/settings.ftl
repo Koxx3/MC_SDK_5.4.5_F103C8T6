@@ -26,10 +26,10 @@
     <#local vps = {} >
     <#list sig_mode_s as signal, mode>
     <#--<#local v_signal = "${WB_PFCTIMER?upper_case}_VS_${signal}" >-->
-        <#local v_signal = "${free_rtos}_VS_${signal}" >
+        <#local v_signal = "${free_rtos}_VS_CMSIS_V2" >
         <#local vp = "VP_${v_signal}" >
         <#local vps = vps +
-        { vp : [ "${vp}.Mode=${mode}"
+        { vp : [ "${vp}.Mode=CMSIS_V2"
         , "${vp}.Signal=${v_signal}"
         ]
         }>
@@ -92,6 +92,6 @@
 <#function tasks_and_queues>
    <#local footprint = "FREERTOS.FootprintOK=true\n">
    <#local ipparameters = "FREERTOS.IPParameters=Tasks01,FootprintOK\n">
-   <#local tasks = "FREERTOS.Tasks01=mediumFrequency,0,128,startMediumFrequencyTask,As weak,NULL,Dynamic,NULL,NULL;safety,1,128,StartSafetyTask,As external,NULL,Dynamic,NULL,NULL\n">
+   <#local tasks = "FREERTOS.Tasks01=mediumFrequency,24,128,startMediumFrequencyTask,As weak,NULL,Dynamic,NULL,NULL;safety,32,128,StartSafetyTask,As external,NULL,Dynamic,NULL,NULL\n">
    <#return [footprint + ipparameters + tasks]>
 </#function>

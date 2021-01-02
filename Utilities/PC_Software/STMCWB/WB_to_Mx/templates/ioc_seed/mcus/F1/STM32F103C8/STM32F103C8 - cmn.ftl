@@ -1,6 +1,6 @@
 <#import "../../cmns/ioc_Mcu_PCC.ftl" as u >
 
-<#include "../cmns/D-OSC_IN-D-OSC_OUT.ftl">
+<#include "../cmns/OSC_IN-OSC_OUT.ftl">
 
 <#include "../../../mcus/F1/cmns/Sys_Jtms_pin.ftl" >
 
