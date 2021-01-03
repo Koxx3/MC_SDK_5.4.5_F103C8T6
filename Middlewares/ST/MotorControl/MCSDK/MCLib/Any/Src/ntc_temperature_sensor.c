@@ -180,7 +180,7 @@ __weak int16_t NTC_GetAvTemp_C( NTC_Handle_t * pHandle )
   {
     wTemp = ( int32_t )( pHandle->hAvTemp_d );
     wTemp -= ( int32_t )( pHandle->wV0 );
-    wTemp *= pHandle->hSensitivity;
+    wTemp *= -pHandle->hSensitivity;
     wTemp = wTemp / 65536 + ( int32_t )( pHandle->hT0 );
   }
   else
