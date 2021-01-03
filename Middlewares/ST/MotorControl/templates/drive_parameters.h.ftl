@@ -170,9 +170,7 @@
 </#if>
 
 /* USER CODE BEGIN angle reconstruction M1 */
-<#if MC.STATE_OBSERVER_PLL == true || MC.STATE_OBSERVER_CORDIC == true>
 #define PARK_ANGLE_COMPENSATION_FACTOR 0
-</#if>
 #define REV_PARK_ANGLE_COMPENSATION_FACTOR 0
 /* USER CODE END angle reconstruction M1 */
 
