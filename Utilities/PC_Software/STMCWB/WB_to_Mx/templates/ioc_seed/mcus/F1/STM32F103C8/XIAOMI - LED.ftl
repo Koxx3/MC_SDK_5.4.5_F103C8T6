@@ -1,4 +1,4 @@
-# PINs for the External OSCILLATOR
+# PINs for the XIAOMI LED
 ${ Mcu.PINs("PD0-OSC_IN", "PD1-OSC_OUT") }
 #
 # LED GPIO

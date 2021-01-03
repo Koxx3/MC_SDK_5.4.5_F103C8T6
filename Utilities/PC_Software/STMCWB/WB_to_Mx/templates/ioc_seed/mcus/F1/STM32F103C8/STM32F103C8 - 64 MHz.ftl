@@ -1,4 +1,6 @@
 <#include "STM32F103C8 - cmn.ftl">
+<#include "XIAOMI - POWER.ftl">
+<#include "XIAOMI - LED.ftl">
 # 64 MHz specific settings
 RCC.ADCFreqValue=10666666
 RCC.ADCPresc=RCC_ADCPCLK2_DIV6
@@ -25,3 +27,4 @@ RCC.SYSCLKSource=RCC_SYSCLKSOURCE_PLLCLK
 RCC.TimSysFreq_Value=64000000
 RCC.USBFreq_Value=64000000
 RCC.VCOOutput2Freq_Value=8000000
+
