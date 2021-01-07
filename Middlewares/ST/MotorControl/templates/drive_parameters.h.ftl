@@ -169,8 +169,8 @@
                                                           amplitude-speed consistency */
 </#if>
 
-/* USER CODE BEGIN angle reconstruction M1 */
 #define PARK_ANGLE_COMPENSATION_FACTOR 0
+/* USER CODE BEGIN angle reconstruction M1 */
 #define REV_PARK_ANGLE_COMPENSATION_FACTOR 0
 /* USER CODE END angle reconstruction M1 */
 
