@@ -22,6 +22,7 @@
 #include "speed_pos_fdbk.h"
 #include "hall_speed_pos_fdbk.h"
 #include "mc_type.h"
+#include <stdlib.h> // for abs()
 
 /** @addtogroup MCSDK
   * @{
@@ -70,7 +71,7 @@
 
 /* With digit-per-PWM unit (here 2*PI rad = 0xFFFF): */
 #define HALL_MAX_PSEUDO_SPEED        ((int16_t)0x7FFF)
-
+#define MIN_SPEED_CALC_EL_ANGLE      ((uint16_t)100)
 #define CCER_CC1E_Set               ((uint16_t)0x0001)
 #define CCER_CC1E_Reset             ((uint16_t)0xFFFE)
 
@@ -229,6 +230,62 @@ __weak void HALL_Clear( HALL_Handle_t * pHandle )
 __attribute__( ( section ( ".ccmram" ) ) )
 #endif
 #endif
+
+/**
+* @brief  Get hall angle without advanced computing
+*/
+int16_t HALL_GetElAngle( HALL_Handle_t * pHandle )
+{
+	  uint8_t HallState;
+	  if ( pHandle->SensorPlacement == DEGREES_120 )
+	  {
+	    HallState  = LL_GPIO_IsInputPinSet( pHandle->H3Port, pHandle->H3Pin ) << 2
+	                          | LL_GPIO_IsInputPinSet( pHandle->H2Port, pHandle->H2Pin ) << 1
+	                          | LL_GPIO_IsInputPinSet( pHandle->H1Port, pHandle->H1Pin );
+	  }
+	  else
+	  {
+	    HallState  = ( LL_GPIO_IsInputPinSet( pHandle->H2Port, pHandle->H2Pin ) ^ 1 ) << 2
+	                          | LL_GPIO_IsInputPinSet( pHandle->H3Port, pHandle->H3Pin ) << 1
+	                          | LL_GPIO_IsInputPinSet( pHandle->H1Port, pHandle->H1Pin );
+	  }
+
+	  int16_t hElAngle=0;
+	  switch ( HallState )
+	  {
+	    case STATE_5:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift + S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    case STATE_1:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift + S16_60_PHASE_SHIFT +
+	                                              S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    case STATE_3:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift + S16_120_PHASE_SHIFT +
+	                                              S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    case STATE_2:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift - S16_120_PHASE_SHIFT -
+	                                              S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    case STATE_6:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift - S16_60_PHASE_SHIFT -
+	                                              S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    case STATE_4:
+	      hElAngle = ( int16_t )( pHandle->PhaseShift - S16_60_PHASE_SHIFT / 2 );
+	      break;
+	    default:
+	      /* Bad hall sensor configutarion so update the speed reliability */
+	      pHandle->SensorIsReliable = false;
+	      break;
+	  }
+
+	  return hElAngle;
+
+}
+
+
 /**
 * @brief  Update the rotor electrical angle integrating the last measured
 *         instantaneous electrical speed express in dpp.
@@ -237,8 +294,22 @@ __attribute__( ( section ( ".ccmram" ) ) )
 */
 __weak int16_t HALL_CalcElAngle( HALL_Handle_t * pHandle )
 {
-
+/*
   if ( pHandle->_Super.hElSpeedDpp != HALL_MAX_PSEUDO_SPEED )
+  {
+    pHandle->MeasuredElAngle += pHandle->_Super.hElSpeedDpp;
+    pHandle->_Super.hElAngle += pHandle->_Super.hElSpeedDpp + pHandle->CompSpeed;
+    pHandle->PrevRotorFreq = pHandle->_Super.hElSpeedDpp;
+  }
+  else
+  {
+    pHandle->_Super.hElAngle += pHandle->PrevRotorFreq;
+  }
+  */
+  if ( abs(pHandle->AvrElSpeedDpp) < MIN_SPEED_CALC_EL_ANGLE ){
+	  return HALL_GetElAngle(pHandle);
+  }
+  else if ( pHandle->_Super.hElSpeedDpp != HALL_MAX_PSEUDO_SPEED )
   {
     pHandle->MeasuredElAngle += pHandle->_Super.hElSpeedDpp;
     pHandle->_Super.hElAngle += pHandle->_Super.hElSpeedDpp + pHandle->CompSpeed;
@@ -251,6 +322,7 @@ __weak int16_t HALL_CalcElAngle( HALL_Handle_t * pHandle )
 
   return pHandle->_Super.hElAngle;
 }
+
 
 
 /**

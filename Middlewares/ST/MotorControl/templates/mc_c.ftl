@@ -119,6 +119,13 @@ void vPortSetupTimerInterrupt( void )
 	</#if> 
 }
 </#if>
+
+
+void MX_SetSerialTimeout(uint32_t timeout)
+{
+	MC_SetSerialTimeout(timeout);
+}
+
 /**
   * @}
   */

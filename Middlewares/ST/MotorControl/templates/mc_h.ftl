@@ -96,5 +96,8 @@ void MX_MotorControl_Init(void);
 #endif /* __cpluplus */
 </#if> <#-- DriveTypeRoot -->
 
+/* Set torque to 0 if no more serial commands are received */
+void MX_SetSerialTimeout(uint32_t timeout);
+
 #endif /* __MOTORCONTROL_H */
 /******************* (C) COPYRIGHT 2019 STMicroelectronics *****END OF FILE****/

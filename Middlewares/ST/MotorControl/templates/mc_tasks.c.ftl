@@ -543,7 +543,6 @@
 #define OFFCALIBRWAITTICKS2    (uint16_t)((SYS_TICK_FREQUENCY * OFFCALIBRWAIT_MS2)/ 1000)
 #define STOPPERMANENCY_TICKS   (uint16_t)((SYS_TICK_FREQUENCY * STOPPERMANENCY_MS)/ 1000)
 #define STOPPERMANENCY_TICKS2  (uint16_t)((SYS_TICK_FREQUENCY * STOPPERMANENCY_MS2)/ 1000)
-#define PARK_ANGLE_COMPENSATION_FACTOR 0
 
 /* Un-Comment this macro define in order to activate the smooth
    braking action on over voltage */
@@ -592,6 +591,8 @@
 #define VBUS_TEMP_ERR_MASK2 ~(${OV_ERR2} | ${UV_ERR2} | ${OT_ERR2})
 </#if>
 </#if>
+
+#define PARK_ANGLE_COMPENSATION_FACTOR 0
 
 /* Private variables----------------------------------------------------------*/
 FOCVars_t FOCVars[NBR_OF_MOTORS];
@@ -676,6 +677,8 @@ static volatile uint16_t hStopPermanencyCounterM2 = 0;
 
 uint8_t bMCBootCompleted = 0;
 
+uint8_t serialTimeout = 0; 
+ 
 /* USER CODE BEGIN Private Variables */
 
 /* USER CODE END Private Variables */
@@ -1783,6 +1786,15 @@ __weak void MC_RunMotorControlTasks(void)
   }
 }
 
+/** 
+ * @brief Set torque to 0 if no more serial commands are received 
+ * 
+ */ 
+__weak void MC_SetSerialTimeout(uint32_t timeout) 
+{ 
+	serialTimeout = timeout; 
+} 
+ 
 /**
  * @brief  Executes the Medium Frequency Task functions for each drive instance. 
  *
@@ -2269,6 +2281,18 @@ __weak void TSK_MediumFrequencyTaskM1(void)
 
     MCI_ExecBufferedCommands( oMCInterface[M1] );
     FOC_CalcCurrRef( M1 );
+     
+    /* stop motor is no more serial commands received */ 
+	if (serialTimeout > 0) { 
+		if (HAL_GetTick() > UFCP_Get_Time_Last_Receive_Frame() + serialTimeout ) 
+		{ 
+			qd_t torque; 
+			torque.d = 0; 
+			torque.q = 0; 
+			MC_SetCurrentReferenceMotor1(torque); 
+		} 
+	} 
+ 
 <#if ( MC.HFINJECTION == true)>
 
     if ( STC_GetSpeedSensor( pSTC[M1]) == &STO_PLL_M1._Super )

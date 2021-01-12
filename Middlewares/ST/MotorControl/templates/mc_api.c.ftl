@@ -1119,6 +1119,12 @@ __weak float MC_GetMoveDuration2( void )
 }
 </#if>
 
+/* Set torque to 0 if no more serial commands are received */
+void MX_SetSerialTimeout(uint32_t timeout) {
+	MC_SetSerialTimeout(timeout);
+}
+
+
 /**
   * @}
   */
